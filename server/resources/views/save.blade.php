@@ -20,37 +20,63 @@
     <body>
         <div class="content">
             これは画像保存ページです。
-            <input type = "file" id = "stonepicture" accept="image/*">
-            <img id = "preview">
+            <div class="upload"><input type="file" name="file" id="file"></div>
+            <img id="result">
             <input type = "button" value="強さを判定">
-            <script type="text/javascript" src="{{ asset('/js/cropimage.js') }}"></script>
+            <canvas id="canvas" style="display: none;"></canvas>
             <script type="text/javascript" src="{{ asset('/js/status.js') }}"></script>
-            <script type = "text/javascript">
-              function previewFile(file) {
-                // プレビュー画像を追加する要素
-                const preview = document.getElementById('preview');
-                // FileReaderオブジェクトを作成
-                const reader = new FileReader();
-                // URLとして読み込まれたときに実行する処理
-                reader.onload = function (e) {
-                  const imageUrl = e.target.result; // URLはevent.target.resultで呼び出せる
-                  preview.src = imageUrl; // URLをimg要素にセット
-                }
-                // いざファイルをURLとして読み込む
-                reader.readAsDataURL(file);
+            <script type="text/javascript">
+              var file = document.getElementById('file');
+              var canvas = document.getElementById('canvas');
+              var canvasWidth = 360;
+              var canvasHeight = 360;
+              var uploadImgSrc;
+              // Canvasの準備
+              canvas.width = canvasWidth;
+              canvas.height = canvasHeight;
+              var ctx = canvas.getContext('2d');
+              function loadLocalImage(e) {
+                  // ファイル情報を取得
+                  var fileData = e.target.files[0];
+                  // 画像ファイル以外は処理を止める
+                  if(!fileData.type.match('image.*')) {
+                      alert('画像を選択してください');
+                      return;
+                  }
+                  // FileReaderオブジェクトを使ってファイル読み込み
+                  var reader = new FileReader();
+                  // ファイル読み込みに成功したときの処理
+                  reader.onload = function() {
+                      // Canvas上に表示する
+                      uploadImgSrc = reader.result;
+                      canvasDraw();
+                  }
+                  // ファイル読み込みを実行
+                  reader.readAsDataURL(fileData);
               }
-
-              const fileInput = document.getElementById('stonepicture');
-              const handleFileSelect = () => {
-                const files = fileInput.files;
-                var file = files[0];
-                var image = new Image();
-                var croppedImage=cropImage(image);
-                var status=getStatus(croppedImage);
-                previewFile(croppedImage);
-                console.log(status);
+              // ファイルが指定された時にloadLocalImage()を実行
+              file.addEventListener('change', loadLocalImage, false);
+              // Canvas上に画像を表示する
+              function canvasDraw(imgSrc) {
+                  // canvas内の要素をクリアする
+                  ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+                  // Canvas上に画像を表示
+                  var img = new Image();
+                  img.src = uploadImgSrc;
+                  img.onload = function() {
+                      var width=img.naturalWidth;
+                      var height = img.naturalHeight;
+                      var magni = 360/(Math.min(width,height));
+                      width*=magni;
+                      height*=magni;
+                      ctx.drawImage(img,180-width/2,180-height/2,width,height);
+                      var imageData = ctx.getImageData(0,0,360,360);
+                      var status = getStatus(imageData);
+                      // canvasを画像に変換
+                      var data = canvas.toDataURL();
+                      document.getElementById('result').src = data; //statusにステータスがあります。dataが画像です。
+                  }
               }
-              fileInput.addEventListener('change', handleFileSelect);
             </script>
         </div>
     </body>
