@@ -44,6 +44,7 @@
               }
               fileInput.addEventListener('change', handleFileSelect);
             </script>
+            <input type = "button" value="強さを判定">
         </div>
     </body>
 </html>
