@@ -37,15 +37,15 @@ function getStatus(imgData) {
 
     /*--------HPの決定--------*/
     var temperHP = g - b / 2 - r / 2;
-    var HP = 50 + 10 * temperHP;
+    var HP = 50 + 20 * temperHP;
 
     /*--------ATKの決定--------*/
     var temperATK = r - g / 2 - b / 2;
-    var ATK = 40 + 10 * temperAT
+    var ATK = 40 + 20 * temperATK
 
     /*--------DEFの決定--------*/
     var temperDEF = b - r / 2 - g / 2;
-    var DEF = 30 + 10 * temperDEF;
+    var DEF = 30 + 20 * temperDEF;
 
 
 return [HP, ATK, DEF, color];
