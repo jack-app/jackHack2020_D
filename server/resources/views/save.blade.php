@@ -22,6 +22,9 @@
             これは画像保存ページです。
             <input type = "file" id = "stonepicture" accept="image/*">
             <img id = "preview">
+            <input type = "button" value="強さを判定">
+            <script type="text/javascript" src="{{ asset('/js/cropimage.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('/js/status.js') }}"></script>
             <script type = "text/javascript">
               function previewFile(file) {
                 // プレビュー画像を追加する要素
@@ -40,11 +43,15 @@
               const fileInput = document.getElementById('stonepicture');
               const handleFileSelect = () => {
                 const files = fileInput.files;
-                previewFile(files[0]);
+                var file = files[0];
+                var image = new Image();
+                var croppedImage=cropImage(image);
+                var status=getStatus(croppedImage);
+                previewFile(croppedImage);
+                console.log(status);
               }
               fileInput.addEventListener('change', handleFileSelect);
             </script>
-            <input type = "button" value="強さを判定">
         </div>
     </body>
 </html>
