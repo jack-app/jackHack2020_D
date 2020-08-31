@@ -23,14 +23,12 @@ class ConfirmController extends Controller
         $post_data = $request->all();
         $post_data['user_id'] = 1;
 
-        $color = $post_data['color'] == R ? 0 : $post_data['color'] == G ? 1 : 2;
-
         $stone->user_id = $post_data['user_id'];
         $stone->stone_name = $post_data['name'];
         $stone->hp = $post_data['hp'];
         $stone->attack = $post_data['attack'];
         $stone->defence = $post_data['defence'];
-        $stone->color = $color;
+        $stone->color = $post_data['color'];
 
         $stone->save();
 
