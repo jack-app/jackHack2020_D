@@ -12,40 +12,44 @@
         <!-- Styles -->
         <style>
         .main{
-       text-align :center;
-      }
-      .sub{
-        padding-top :15px;
-        width :200px;
-        text-aligen :center;
-        margin :0 auto;
-      }
-      .sub p{
-        background :blue;
-      font-size :40px;
-      text-align :center;
-      }
-      img{
-        height :500px;
-        width :800px;
-
-      }
+         text-align :center;
+        }
+        .sub{
+          padding-top :15px;
+          width :200px;
+          text-aligen :center;
+          margin :0 auto;
+        }
+        .sub p{
+          background :blue;
+        font-size :40px;
+        text-align :center;
+        }
+        body {
+          background-image: url('https://www.pakutaso.com/shared/img/thumb/161103194934DSCF6903.jpg');
+          background-color:rgba(255,255,255,0.6);
+          background-blend-mode:lighten;
+          background-size: cover;
+        }
 
         </style>
     </head>
     <body>
-      <div class="main">
-        <img src="https://www.pakutaso.com/shared/img/thumb/161103194934DSCF6903.jpg">
-      </div>
-      <div class="sub">
-        <!--石を拾うは画像アップロードのコマンド-->　
-        <p>石を拾う</p>
-      </div>
         <div class="content">
-            これは画像保存ページです。
-            <div class="upload"><input type="file" name="file" id="file"></div>
-            <img id="result">
-            <input type = "button" value="強さを判定">
+          <!--<div class="main">
+            <img src="https://www.pakutaso.com/shared/img/thumb/161103194934DSCF6903.jpg">
+          </div>-->
+          <div class="sub">
+            <p>石を拾う</p>
+            <div class="upload"><input type="file" name="file" id="file" accept="image/*"></div>
+            <img id="result" style="display: none;">
+            <form action="status" method="post">
+              <input type="text" id = "attack" value="0" style="display: none;">
+              <input type="text" id = "defence" value="0" style="display: none;">
+              <input type="text" id = "HP" value="0" style="display: none;">
+              <input type="text" id = "color" value="0" style="display: none;">
+              <input type = "submit" id = "submit" value="強さを判定" style="display: none;">
+            </form>
             <canvas id="canvas" style="display: none;"></canvas>
             <script type="text/javascript" src="{{ asset('/js/status.js') }}"></script>
             <script type="text/javascript">
@@ -63,6 +67,8 @@
                   var fileData = e.target.files[0];
                   // 画像ファイル以外は処理を止める
                   if(!fileData.type.match('image.*')) {
+                    document.getElementById('submit').style.display="none";
+                    document.getElementById('result').style.display="none";
                       alert('画像を選択してください');
                       return;
                   }
@@ -95,12 +101,19 @@
                       ctx.drawImage(img,180-width/2,180-height/2,width,height);
                       var imageData = ctx.getImageData(0,0,360,360);
                       var status = getStatus(imageData);
+                      document.getElementById('HP').value=Math.round(status[0]);
+                      document.getElementById('attack').value=Math.round(status[1]);
+                      document.getElementById('defence').value=Math.round(status[2]);
+                      document.getElementById('color').value=Math.round(status[3]);
+                      document.getElementById('submit').style.display="block";
                       // canvasを画像に変換
                       var data = canvas.toDataURL();
+                      document.getElementById('result').style.display="block";
                       document.getElementById('result').src = data; //statusにステータスがあります。dataが画像です。
                   }
               }
             </script>
+          </div>
         </div>
     </body>
 </html>
