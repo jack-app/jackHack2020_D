@@ -11,6 +11,14 @@ class User extends Authenticatable
     use Notifiable;
 
     /**
+     * モデルと関連しているテーブル
+     *
+     * @var string
+     */
+    protected $table = 'users';
+
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -36,4 +44,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * idから石を取得
+     *
+     */
+    public function stones()
+    {
+        return $this->hasMany('App\Stones');
+    }
 }

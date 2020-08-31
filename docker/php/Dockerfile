@@ -2,7 +2,7 @@ FROM php:7.3-fpm
 COPY php.ini /usr/local/etc/php/
 
 RUN apt-get update \
-    && apt-get install -y zlib1g-dev libzip-dev mariadb-client \
+    && apt-get install -y zlib1g-dev libzip-dev mariadb-client unzip \
     && docker-php-ext-install zip pdo_mysql
 
 # nodejs install
