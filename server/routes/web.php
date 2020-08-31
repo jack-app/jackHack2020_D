@@ -18,8 +18,8 @@ Route::get('/', function () {
 });
 
 Route::get('/save', 'SaveController@index')->name('save');
+Route::post('/save_stone', 'SaveController@saveStoneData')->name('save_stone');
 Route::get('/confirm', 'ConfirmController@index')->name('confirm');
-Route::post('/confirm', 'ConfirmController@saveStoneData');
 Route::get('/fight', 'FightController@index')->name('fight');
 Route::get('/fight/{id}', 'FightController@stone')->name('fight');
 Route::get('/result', 'ResultController@index')->name('result');
