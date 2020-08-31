@@ -141,6 +141,10 @@ class StoneBattle {
     }
 }
 
+var user_stone = @json($user_stone);
+var enemy_stone = @json($enemy_stone);
+console.log(user_stone);
+console.log(enemy_stone);
 var buttle = new StoneBattle(["なまえ", 50, 40, 30, 0], ["てき", 50, 40, 30, 1]);
 var eHP = document.getElementById("enemyHP");
 var fHP = document.getElementById("friendHP");

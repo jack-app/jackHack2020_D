@@ -10,9 +10,9 @@ use App\User;
 class FightController extends Controller
 {
     public function index() {
-        $stone = Stones::all();
-        $users_stone = User::find(1)->stones;
-        return view('fight',compact('stone','users_stone'));
+        $user_stone = User::find(1)->stones;
+        $enemy_stone = User::find(2)->stones;
+        return view('fight',compact('enemy_stone','user_stone'));
     }
 
     // public function stone($id)
