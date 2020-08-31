@@ -38,11 +38,12 @@
     <div>
       敵HP:
       <label id="enemyHP"></label>
-      味方HP:
+      <label id="friendName"></label>HP:
       <label id="friendHP"></label>
     </div>
     <div class="sub">
       <!--ボタンをつける-->
+      <label id="cmd_input" style="color:white">コマンドを入力→</label>
       <button id="command0" type="button" onclick="buttle.buttle(0)">攻撃態勢</button>
       <button id="command1" type="button" onclick="buttle.buttle(1)">防御態勢</button>
     </div>
@@ -141,15 +142,17 @@ class StoneBattle {
     }
 }
 
-var user_stone = @json($user_stone);
-var enemy_stone = @json($enemy_stone);
-console.log(user_stone);
-console.log(enemy_stone);
-var buttle = new StoneBattle(["なまえ", 50, 40, 30, 0], ["てき", 50, 40, 30, 1]);
+var user_stone_data = @json($user_stone)[0];
+var enemy_stone_data = @json($enemy_stone)[0];
+console.log(user_stone_data);
+console.log(enemy_stone_data);
+var buttle = new StoneBattle([user_stone_data.stone_name, user_stone_data.hp, user_stone_data.attack, user_stone_data.defence, user_stone_data.color], [enemy_stone_data.stone_name, enemy_stone_data.hp, enemy_stone_data.attack, enemy_stone_data.defence, enemy_stone_data.color]);
 var eHP = document.getElementById("enemyHP");
 var fHP = document.getElementById("friendHP");
+var fName = document.getElementById("friendName");
 eHP.innerText = buttle.enemy.HP;
 fHP.innerText = buttle.friend.HP;
+fName.innerText = buttle.friend.Name;
 
 
 
