@@ -48,9 +48,9 @@
       <button id="command1" type="button" onclick="buttle.buttle(1)">防御態勢</button>
     </div>
     <div>
-      <button type="button" id="nextWin" style="display: none" onclick="">次へ</button>
-      <button type="button" id="nextDraw" style="display: none" onclick="">次へ</button>
-      <button type="button" id="nextLose" style="display: none" onclick="">次へ</button>
+      <button type="button" id="nextWin" style="display: none" onclick="location.href='/resultwin'">次へ</button>
+      <button type="button" id="nextDraw" style="display: none" onclick="location.href='/resultdraw'">次へ</button>
+      <button type="button" id="nextLose" style="display: none" onclick="location.href='/resultlose'">次へ</button>
     </div>
     </div>
     </body>
