@@ -26,6 +26,8 @@
     <div class="sub">
       <!--勝ちの場合-->
       引き分けでした！
+      <button type="button" onclick="location.href='/confirm'">ステータス画面に戻る</button>
+
       </div>
     </body>
 </html>

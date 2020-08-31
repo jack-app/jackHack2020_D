@@ -26,6 +26,7 @@
     <div class="sub">
       <!--勝ちの場合-->
       残念・・・負けてしまいました・・・
+      <button type="button" onclick="location.href='/confirm'">ステータス画面に戻る</button>
       </div>
     </body>
 </html>
