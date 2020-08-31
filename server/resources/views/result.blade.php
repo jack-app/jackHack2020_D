@@ -11,15 +11,21 @@
 
         <!-- Styles -->
         <style>
-            .content {
-                text-align: center;
-                margin-top: 30vh;
-            }
+        .main{
+          background-image: url(https://i.ytimg.com/vi/319FlinAjkw/maxresdefault.jpg);
+        }
+
+    </style>
         </style>
     </head>
     <body>
-        <div class="content">
-            これは戦闘結果表示ページです。
-        </div>
+      <div class="main">
+　　　　　 <!--勝敗を記録-->　　
+      <div class="main-contents"><h1>勝利</h1></div>
+    </div>
+    <div class="sub">
+      <!--勝ちの場合-->
+      おめでとうございます！！勝利です!!
+      </div>
     </body>
 </html>

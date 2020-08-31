@@ -11,13 +11,36 @@
 
         <!-- Styles -->
         <style>
-            .content {
-                text-align: center;
-                margin-top: 30vh;
-            }
+        .main{
+       text-align :center;
+      }
+      .sub{
+        padding-top :15px;
+        width :200px;
+        text-aligen :center;
+        margin :0 auto;
+      }
+      .sub p{
+        background :blue;
+      font-size :40px;
+      text-align :center;
+      }
+      img{
+        height :500px;
+        width :800px;
+
+      }
+
         </style>
     </head>
     <body>
+      <div class="main">
+        <img src="https://www.pakutaso.com/shared/img/thumb/161103194934DSCF6903.jpg">
+      </div>
+      <div class="sub">
+        <!--石を拾うは画像アップロードのコマンド-->　
+        <p>石を拾う</p>
+      </div>
         <div class="content">
             これは画像保存ページです。
             <input type = "file" id = "stonepicture" accept="image/*">
